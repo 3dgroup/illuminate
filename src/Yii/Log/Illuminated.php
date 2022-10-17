@@ -8,6 +8,7 @@
 namespace Yii2tech\Illuminate\Yii\Log;
 
 use Illuminate\Log\Logger as LaravelLogger;
+use Illuminate\Log\LogManager;
 use Psr\Log\LogLevel;
 use yii\log\Logger;
 
@@ -33,7 +34,7 @@ trait Illuminated
     /**
      * @return \Illuminate\Log\Logger
      */
-    public function getIlluminateLogger(): LaravelLogger
+    public function getIlluminateLogger(): LogManager
     {
         if ($this->_illuminateLogger === null) {
             $this->_illuminateLogger = $this->defaultIlluminateLogger();
@@ -58,7 +59,7 @@ trait Illuminated
      *
      * @return Logger logger instance.
      */
-    protected function defaultIlluminateLogger(): Logger
+    protected function defaultIlluminateLogger(): LogManager
     {
         return \Illuminate\Support\Facades\Log::getFacadeRoot();
     }

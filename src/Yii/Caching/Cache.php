@@ -7,6 +7,7 @@
 
 namespace Yii2tech\Illuminate\Yii\Caching;
 
+use Illuminate\Cache\CacheManager;
 use Illuminate\Contracts\Cache\Repository;
 
 /**
@@ -50,7 +51,7 @@ class Cache extends \yii\caching\Cache
     /**
      * @return \Illuminate\Contracts\Cache\Repository
      */
-    public function getIlluminateCache(): Repository
+    public function getIlluminateCache(): CacheManager
     {
         if ($this->_illuminateCache === null) {
             $this->_illuminateCache = $this->defaultIlluminateCache();
@@ -73,7 +74,7 @@ class Cache extends \yii\caching\Cache
     /**
      * @return \Illuminate\Contracts\Cache\Repository default cache repository.
      */
-    protected function defaultIlluminateCache(): Repository
+    protected function defaultIlluminateCache(): CacheManager
     {
         return \Illuminate\Support\Facades\Cache::getFacadeRoot();
     }
